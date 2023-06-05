@@ -1,15 +1,13 @@
 package com.jad;
 
+import java.awt.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class Snake {
+
     private Deque<Point> body;
     private Direction direction;
-
-    public static class CollisionException extends RuntimeException {
-        public CollisionException() {
-            super("Collision");
-        }
-    }
-}
 
     public Snake(Point startPoint, int initialSize, Direction direction) {
         this.body = new ArrayDeque<>();
@@ -19,44 +17,47 @@ public class Snake {
         }
     }
 
-    public void move(Snake otherSnake) {
+    public Point getHead() {
+        return body.getFirst();
+    }
+
+
+
+    public void move() {
         Point head = this.body.getFirst();
-        Point newHead;
+        Point newHead = null;
 
         switch(this.direction) {
             case UP:
-                newHead = new Point(head.x, head.y - 1);
+                newHead = new Point(head.x, (head.y - 1 + Constants.GAME_HEIGHT) % Constants.GAME_HEIGHT);
                 break;
             case DOWN:
-                newHead = new Point(head.x, head.y + 1);
+                newHead = new Point(head.x, (head.y + 1) % Constants.GAME_HEIGHT);
                 break;
             case LEFT:
-                newHead = new Point(head.x - 1, head.y);
+                newHead = new Point((head.x - 1 + Constants.GAME_WIDTH) % Constants.GAME_WIDTH, head.y);
                 break;
             case RIGHT:
-                newHead = new Point(head.x + 1, head.y);
+                newHead = new Point((head.x + 1) % Constants.GAME_WIDTH, head.y);
                 break;
         }
 
-        if (this.body.contains(newHead) || otherSnake.getBody().contains(newHead)) {
-            throw new CollisionException();
-        }
-
-        this.body.addFirst(newHead);
-        this.body.removeLast();
     }
 
     public void grow(int growth) {
-
+        for (int i = 0; i < growth; i++) {
+            body.addLast(new Point(-1, -1));  // The position doesn't matter, it will be overwritten in the next move
+        }
     }
 
     public void shrink(int shrink) {
-
+        // ajouter ici la logique de réduction
     }
 
     public void changeDirection(Direction newDirection) {
         this.direction = newDirection;
     }
 
-
+    // getters et setters
 }
+

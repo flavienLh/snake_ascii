@@ -1,5 +1,6 @@
 package com.jad;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public interface IModel {
@@ -14,4 +15,8 @@ public interface IModel {
     ArrayList<Apple> getApples();
 
     void start();
+
+    boolean positionApples(Point point);
+
+    Apple getAppleAtPos(Point point);
 }

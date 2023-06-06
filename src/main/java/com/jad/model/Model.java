@@ -22,6 +22,7 @@ public class Model implements IModel {
     public void addNewApples(){
         for (int i = 0; i < random.nextInt(3) + 1; i++){
             apples.add(new Apple(new Point(random.nextInt(Constants.GAME_WIDTH), random.nextInt(Constants.GAME_HEIGHT)), random.nextInt(9) + 1));
+            System.out.println(apples.get(apples.size()-1).getValue());
         }
     }
 
@@ -72,6 +73,27 @@ public class Model implements IModel {
     @Override
     public void setController(final IController controller) {
         this.controller = controller;
+    }
+
+    public boolean positionApples(Point point){
+        int i = 0;
+        boolean AiP = false;
+        while (!AiP && i < apples.size()){
+            AiP = apples.get(i).getPosition().equals(point);
+            i++;
+        }
+        return AiP;
+    }
+
+    @Override
+    public Apple getAppleAtPos(Point point) {
+        int i = 0;
+        boolean AiP = false;
+        while (!AiP && i < apples.size()){
+            AiP = apples.get(i).getPosition().equals(point);
+            i++;
+        }
+        return apples.get(i-1);
     }
 
 }

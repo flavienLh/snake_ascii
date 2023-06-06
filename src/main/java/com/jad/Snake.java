@@ -55,7 +55,9 @@ public class Snake {
     }
 
     public void shrink(int shrink) {
-        // ajouter ici la logique de réduction
+        for (int i = 0; i > shrink; i--){
+            body.removeLast();
+        }
     }
 
     public void changeDirection(Direction newDirection) {

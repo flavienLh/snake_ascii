@@ -35,7 +35,7 @@ public class Controller implements IController {
     public void runGame() {
         while (gameRunning) {
             Model.tick();
-            view.drawGameState(model.getGameState());
+            view.display();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {

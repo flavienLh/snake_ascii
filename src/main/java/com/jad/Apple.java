@@ -1,8 +1,10 @@
-package com.jad.model;
+package com.jad;
 
 import com.jad.Constants;
 
 import java.awt.*;
+
+import static java.lang.Math.random;
 
 public class Apple {
     private Point position;
@@ -12,6 +14,10 @@ public class Apple {
     public Apple(Point position, int value) {
         this.position = position;
         this.value = value;
+        if (random() >= 0.75 )
+            isPoisonous = false;
+        else
+            isPoisonous = true;
     }
 
 
@@ -24,6 +30,8 @@ public class Apple {
         return this.value;
     }
 
-
+    public boolean isPoisonous() {
+        return isPoisonous;
+    }
 }
 

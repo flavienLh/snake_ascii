@@ -1,7 +1,6 @@
 package com.jad;
 
-import com.jad.model.Apple;
-import com.jad.model.Model;
+import java.util.ArrayList;
 
 public interface IModel {
     IModel getGameState();
@@ -12,7 +11,7 @@ public interface IModel {
 
     Snake getPlayerSnake();
 
-    Apple getApple();
+    ArrayList<Apple> getApples();
 
     void start();
 }

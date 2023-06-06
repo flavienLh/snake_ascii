@@ -116,9 +116,11 @@ class GameWindow extends JFrame {
                     sb.append(PLAYER_SNAKE_CELL);
                 } else if (model.getAiSnake().contains(point)) {
                     sb.append(AI_SNAKE_CELL);
-                } else if (model.getApple() != null && model.getApple().getPosition().equals(point)) {
-                    int value = model.getApple().getValue();
-                    sb.append(value > 0 ? APPLE_CHARACTERS[value - 1] : POISON_APPLE_CHARACTERS[-value - 1]);
+                } else if (model.getApples().size() != 0 && model.getApples().contains(point)) {
+                    for (int i = 0; i < model.getApples().size(); i++) {
+                        int value = model.getApples().get(i).getValue();
+                        sb.append(value > 0 ? APPLE_CHARACTERS[value - 1] : POISON_APPLE_CHARACTERS[-value - 1]);
+                    }
                 } else {
                     sb.append(EMPTY_CELL);
                 }
@@ -126,7 +128,6 @@ class GameWindow extends JFrame {
 
             sb.append('\n');
         }
-
         screen.setText(sb.toString());
     }
 }

@@ -10,5 +10,6 @@ public enum Main {
     public static void main(final String[] args) {
         final IController controller = new Controller(new View(), new Model());
         controller.start();
+        controller.runGame();
     }
 }

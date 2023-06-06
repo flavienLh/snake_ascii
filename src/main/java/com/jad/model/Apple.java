@@ -13,7 +13,7 @@ public class Apple {
         this.position = position;
         this.value = value;
     }
-    
+
 
     // Getters
     public Point getPosition() {

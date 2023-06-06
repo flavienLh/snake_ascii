@@ -17,6 +17,10 @@ public class Snake {
         }
     }
 
+    public boolean contains(Point point) {
+        return this.body.contains(point);
+    }
+
     public Point getHead() {
         return body.getFirst();
     }
@@ -55,6 +59,14 @@ public class Snake {
     }
 
     public void changeDirection(Direction newDirection) {
+
+        if ((this.direction == Direction.UP && newDirection == Direction.DOWN) ||
+                (this.direction == Direction.DOWN && newDirection == Direction.UP) ||
+                (this.direction == Direction.LEFT && newDirection == Direction.RIGHT) ||
+                (this.direction == Direction.RIGHT && newDirection == Direction.LEFT)) {
+            return;
+        }
+
         this.direction = newDirection;
     }
 

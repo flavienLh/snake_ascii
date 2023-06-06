@@ -7,19 +7,21 @@ import java.awt.*;
 public class Apple {
     private Point position;
     private int value;
+    private boolean isPoisonous;
 
     public Apple(Point position, int value) {
         this.position = position;
         this.value = value;
     }
+    
 
     // Getters
     public Point getPosition() {
-        return position;
+        return this.position;
     }
 
     public int getValue() {
-        return value;
+        return this.value;
     }
 
 

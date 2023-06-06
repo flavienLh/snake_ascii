@@ -1,5 +1,9 @@
 package com.jad.view;
 
+import com.jad.Direction;
+import com.jad.IController;
+import com.jad.model.Model;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -11,10 +15,20 @@ import java.awt.event.KeyListener;
  * The window is sized to display a string which has 100 characters in width and 50 in height.
  */
 class GameWindow extends JFrame {
+
+    private IController controller;
     private static final Font MATRICIAL_FONT = new Font("Cascadia Mono", Font.PLAIN, 12);
     private static final int FRAME_WIDTH = 750;
     private static final int FRAME_HEIGHT = 806;
     private final JTextArea screen = new JTextArea("");
+    static final char EMPTY_CELL = ' ';
+    static final char PLAYER_SNAKE_CELL = '█';
+    static final char AI_SNAKE_CELL = '░';
+    private static final char[] DIRECTION_CHARACTERS = {'^', '>', 'v', '<'};
+    static final char[] APPLE_CHARACTERS = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    static final char[] POISON_APPLE_CHARACTERS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'};
+    private Model gameState;
+
 
     /**
      * Instantiates a new Game window.
@@ -31,6 +45,8 @@ class GameWindow extends JFrame {
         this.screen.setFont(GameWindow.MATRICIAL_FONT);
         this.screen.setEditable(false);
         this.add(this.screen, BorderLayout.CENTER);
+        this.controller = controller;
+        this.gameState = gameState;
 
         this.screen.addKeyListener(new KeyListener() {
             @Override
@@ -57,7 +73,20 @@ class GameWindow extends JFrame {
     }
 
     private void keyPressed(final KeyEvent keyEvent) {
-        // The code to manage the key pressed event
+        switch (keyEvent.getKeyChar()) {
+            case 'q':
+                controller.changePlayerDirection(Direction.LEFT);
+                break;
+            case 'd':
+                controller.changePlayerDirection(Direction.RIGHT);
+                break;
+            case 'z':
+                controller.changePlayerDirection(Direction.UP);
+                break;
+            case 's':
+                controller.changePlayerDirection(Direction.DOWN);
+                break;
+        }
     }
 
     private void keyTyped(final KeyEvent keyEvent) {
@@ -72,4 +101,6 @@ class GameWindow extends JFrame {
     public void setScreen(final String screen) {
         this.screen.setText(screen);
     }
+
+
 }

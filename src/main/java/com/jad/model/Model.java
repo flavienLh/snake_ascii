@@ -30,10 +30,6 @@ public class Model implements IModel {
         return this.apple;
     }
 
-    @Override
-    public IModel getgameState() {
-        return null;
-    }
 
     @Override
     public IModel getGameState() {

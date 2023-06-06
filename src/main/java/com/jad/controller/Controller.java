@@ -10,7 +10,7 @@ public class Controller implements IController {
     private final IView view;
     private final IModel model;
     private boolean gameRunning = true;
-    private IView gameWindow;
+
 
     public Controller(final IView view, final IModel model) {
         this.view = view;
@@ -18,6 +18,7 @@ public class Controller implements IController {
         this.view.setController(this);
         this.view.setModel(this.model);
         this.model.setController(this);
+
     }
 
     @Override
@@ -27,13 +28,14 @@ public class Controller implements IController {
 
     @Override
     public void start() {
+        this.model.start();
         this.view.display();
     }
 
     public void runGame() {
         while (gameRunning) {
             Model.tick();
-            gameWindow.drawGameState(model.getgameState());
+            view.drawGameState(model.getGameState());
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {

@@ -14,5 +14,5 @@ public interface IModel {
 
     Apple getApple();
 
-    IModel getgameState();
+    void start();
 }

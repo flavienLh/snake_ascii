@@ -19,7 +19,7 @@ public class View implements IView {
 
     @Override
     public void display() {
-        this.gameWindow.setScreen("Not yet implemented");
+        this.gameWindow.drawGameState(this.model);
     }
 
     @Override

@@ -48,8 +48,8 @@ public class Model implements IModel {
     }
 
     public void updateGame() {
-        updatePlayerSnakePosition();  // Move the player snake
-        tick();  // Keep the existing logic
+        updatePlayerSnakePosition();
+        tick();
     }
 
     public Snake getPlayerSnake() {
@@ -73,7 +73,7 @@ public class Model implements IModel {
 
     public static void tick() {
 
-        // Check for collisions with the apple
+
         for (int i = 0; i < apples.size(); i++){
             if (playerSnake.getHead().equals(apples.get(i).getPosition())) {
                 if (!apples.get(i).isPoisonous())

@@ -58,7 +58,7 @@ public class Snake {
         }
         this.body.addFirst(newHead);
 
-        // Enlève la queue du serpent
+
         if (this.body.size() > this.length) {
             this.body.removeLast();
         }
@@ -67,7 +67,7 @@ public class Snake {
 
     public void grow(int growth) {
         for (int i = 0; i < growth; i++) {
-            body.addLast(new Point(-1, -1));  // The position doesn't matter, it will be overwritten in the next move
+            body.addLast(new Point(-1, -1));
         }
     }
 

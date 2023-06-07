@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * The type Game window.
@@ -31,6 +33,10 @@ class GameWindow extends JFrame {
     static final char[] POISON_APPLE_CHARACTERS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'};
     private Model gameState;
 
+    private static final InputStream FONT_FILE_PATH = GameWindow.class.getResourceAsStream("/CascadiaMono.ttf");
+
+    private static final float FONT_SIZE = 12f;
+
 
     /**
      * Instantiates a new Game window.
@@ -44,7 +50,7 @@ class GameWindow extends JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
-        this.screen.setFont(GameWindow.MATRICIAL_FONT);
+        this.screen.setFont(GameWindow.makeFont());
         this.screen.setEditable(false);
         this.add(this.screen, BorderLayout.CENTER);
         this.controller = controller;
@@ -127,5 +133,17 @@ class GameWindow extends JFrame {
             sb.append('\n');
         }
         screen.setText(sb.toString());
+    }
+
+    private static Font makeFont() {
+        Font font;
+        try {
+            assert GameWindow.FONT_FILE_PATH != null;
+            font = Font.createFont(Font.TRUETYPE_FONT, GameWindow.FONT_FILE_PATH);
+        } catch (final FontFormatException | IOException exception) {
+            throw new RuntimeException(exception);
+        }
+        font = font.deriveFont(GameWindow.FONT_SIZE);
+        return font;
     }
 }

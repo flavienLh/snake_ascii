@@ -20,5 +20,5 @@ public interface IModel {
 
     Apple getAppleAtPos(Point point);
 
-    void updateGame();
+    void updateGame(int t);
 }

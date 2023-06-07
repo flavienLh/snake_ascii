@@ -69,6 +69,7 @@ public class Snake {
         for (int i = 0; i < growth; i++) {
             body.addLast(new Point(-1, -1));
         }
+        System.out.println("Grow : "+this.body.size());
     }
 
     public void shrink(int shrink) {

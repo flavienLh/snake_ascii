@@ -36,14 +36,16 @@ public class Controller implements IController {
     }
 
     public void runGame() {
+        int t = 0;
         while (gameRunning) {
-            this.model.updateGame();
+            this.model.updateGame(t);
             view.display();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            t = ( t + 1 ) % 51;
         }
     }
 }

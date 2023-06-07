@@ -19,4 +19,6 @@ public interface IModel {
     boolean positionApples(Point point);
 
     Apple getAppleAtPos(Point point);
+
+    void updateGame();
 }

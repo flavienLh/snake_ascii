@@ -5,6 +5,8 @@ import com.jad.IController;
 import com.jad.IModel;
 import com.jad.IView;
 import com.jad.model.Model;
+import javax.swing.*;
+
 
 public class Controller implements IController {
     private final IView view;
@@ -30,11 +32,12 @@ public class Controller implements IController {
     public void start() {
         this.model.start();
         this.view.display();
+        runGame();
     }
 
     public void runGame() {
         while (gameRunning) {
-            Model.tick();
+            this.model.updateGame();
             view.display();
             try {
                 Thread.sleep(100);

@@ -26,6 +26,32 @@ public class Model implements IModel {
         }
     }
 
+    private void updatePlayerSnakePosition() {
+        Direction currentDirection = playerSnake.getDirection();
+        Point newHeadPosition = new Point(playerSnake.getHeadPosition());
+        switch (currentDirection) {
+            case UP:
+                newHeadPosition.y--;
+                break;
+            case DOWN:
+                newHeadPosition.y++;
+                break;
+            case LEFT:
+                newHeadPosition.x--;
+                break;
+            case RIGHT:
+                newHeadPosition.x++;
+                break;
+        }
+
+        playerSnake.move(newHeadPosition);
+    }
+
+    public void updateGame() {
+        updatePlayerSnakePosition();  // Move the player snake
+        tick();  // Keep the existing logic
+    }
+
     public Snake getPlayerSnake() {
         return this.playerSnake;
     }
@@ -95,5 +121,6 @@ public class Model implements IModel {
         }
         return apples.get(i-1);
     }
+
 
 }

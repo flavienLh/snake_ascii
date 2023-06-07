@@ -8,6 +8,7 @@ public class Snake {
 
     private Deque<Point> body;
     private Direction direction;
+    private int length;
 
     public Snake(Point startPoint, int initialSize, Direction direction) {
         this.body = new ArrayDeque<>();
@@ -25,9 +26,19 @@ public class Snake {
         return body.getFirst();
     }
 
+    public Direction getDirection() {
+        return this.direction;
+    }
 
+    public Point getHeadPosition() {
+        if (this.body.size() > 0) {
+            return this.body.getFirst();
+        } else {
+            return null;
+        }
+    }
 
-    public void move() {
+    public void move(Point newHeadPosition) {
         Point head = this.body.getFirst();
         Point newHead = null;
 
@@ -45,8 +56,14 @@ public class Snake {
                 newHead = new Point((head.x + 1) % Constants.GAME_WIDTH, head.y);
                 break;
         }
+        this.body.addFirst(newHead);
 
+        // Enlève la queue du serpent
+        if (this.body.size() > this.length) {
+            this.body.removeLast();
+        }
     }
+
 
     public void grow(int growth) {
         for (int i = 0; i < growth; i++) {
@@ -71,6 +88,7 @@ public class Snake {
 
         this.direction = newDirection;
     }
+
 
     // getters et setters
 }

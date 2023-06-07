@@ -14,7 +14,7 @@ public class View implements IView {
     private IModel model;
     private IController controller;
     private JTextArea screen;
-    private final GameWindow gameWindow = new GameWindow("Ascii Snake");
+    private GameWindow gameWindow;
 
     @Override
     public void display() {
@@ -29,5 +29,6 @@ public class View implements IView {
     @Override
     public void setController(final IController controller) {
         this.controller = controller;
+        this.gameWindow = new GameWindow("Ascii Snake", controller);
     }
 }

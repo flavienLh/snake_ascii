@@ -37,7 +37,7 @@ class GameWindow extends JFrame {
      *
      * @param title the title of the window
      */
-    public GameWindow(final String title) {
+    public GameWindow(final String title, IController controller) {
         super(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(GameWindow.FRAME_WIDTH, GameWindow.FRAME_HEIGHT);

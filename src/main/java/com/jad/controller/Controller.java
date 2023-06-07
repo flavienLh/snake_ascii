@@ -22,6 +22,10 @@ public class Controller implements IController {
         this.model.setController(this);
 
     }
+    @Override
+    public Direction getCurrentDirection() {
+        return model.getPlayerSnake().getDirection();
+    }
 
     @Override
     public void changePlayerDirection(Direction direction) {

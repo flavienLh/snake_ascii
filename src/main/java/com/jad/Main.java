@@ -11,5 +11,6 @@ public enum Main {
         final IController controller = new Controller(new View(), new Model());
         controller.start();
         controller.runGame();
+        System.out.println("hello");
     }
 }

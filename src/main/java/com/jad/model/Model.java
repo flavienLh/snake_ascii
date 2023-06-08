@@ -44,10 +44,13 @@ public class Model implements IModel {
                 apples.remove(i);
             }
         }
-        if (playerSnake.selfHit()) {
+        if (playerSnake.selfHit() || playerSnake.hitOtherSnake(aiSnake)) {
             controller.gameOver();
         }
-        if (playerSnake.hitOtherSnake(aiSnake) || aiSnake.hitOtherSnake(playerSnake)) {
+        if (playerSnake.getLength() > 100 || aiSnake.hitOtherSnake(playerSnake)){
+            controller.gameWin();
+        }
+        if (playerSnake.getLength() <= 0 || aiSnake.getLength() >= 100) {
             controller.gameOver();
         }
         if (t == 50) {

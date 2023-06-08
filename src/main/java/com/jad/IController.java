@@ -13,4 +13,6 @@ public interface IController {
     void restartGame();
 
     void gameOver();
+
+    void gameWin();
 }

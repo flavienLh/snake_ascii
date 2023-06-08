@@ -64,9 +64,11 @@ public class Controller extends Component implements IController {
                 e.printStackTrace();
             }
             t = (t + 1) % 51;
-            this.isEndOfTheGame();
+            if (model.isWin() || model.isLost()) {
+                this.gameRunning = false;
+                this.gameOver();
+            }
         }
-        this.gameOver();
     }
 
     @Override
@@ -84,6 +86,28 @@ public class Controller extends Component implements IController {
         int choice = JOptionPane.showOptionDialog(this,
                 "Game Over! Que voulez-vous faire?",
                 "Game Over",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+
+        switch (choice) {
+            case JOptionPane.YES_OPTION:
+                model.resetGame();
+                break;
+            case JOptionPane.NO_OPTION:
+                System.exit(0);
+                break;
+        }
+    }
+
+    public void gameWin() {
+        Object[] options = {"Recommencer", "Quitter"};
+        int choice = JOptionPane.showOptionDialog(this,
+                "Vous avez gagné ! Que voulez-vous faire?",
+                "Victoire",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
                 null,

@@ -5,6 +5,7 @@ import com.jad.IController;
 import com.jad.IModel;
 import com.jad.IView;
 import com.jad.model.Model;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -33,6 +34,7 @@ public class Controller extends Component implements IController {
         });
 
     }
+
     @Override
     public Direction getCurrentDirection() {
         return model.getPlayerSnake().getDirection();
@@ -61,7 +63,7 @@ public class Controller extends Component implements IController {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            t = ( t + 1 ) % 51;
+            t = (t + 1) % 51;
         }
     }
 
@@ -70,7 +72,11 @@ public class Controller extends Component implements IController {
 
     }
 
-
+    public void isEndOfTheGame() {
+        if (model.isWin()) {
+            gameRunning = !gameRunning;
+        }
+    }
 
     public void gameOver() {
         Object[] options = {"Recommencer", "Quitter"};
@@ -93,6 +99,5 @@ public class Controller extends Component implements IController {
                 break;
         }
     }
-
-
 }
+

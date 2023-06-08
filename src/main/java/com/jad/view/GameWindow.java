@@ -22,22 +22,20 @@ import java.io.InputStream;
  */
 class GameWindow extends JFrame {
 
-    private IController controller;
-    private static final Font MATRICIAL_FONT = new Font("Cascadia Mono", Font.PLAIN, 12);
-    private static final int FRAME_WIDTH = 750;
-    private static final int FRAME_HEIGHT = 806;
-    private final JTextArea screen = new JTextArea("");
     static final char EMPTY_CELL = ' ';
     static final char PLAYER_SNAKE_CELL = '█';
     static final char AI_SNAKE_CELL = '░';
-    private static final char[] DIRECTION_CHARACTERS = {'^', '>', 'v', '<'};
     static final char[] APPLE_CHARACTERS = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
     static final char[] POISON_APPLE_CHARACTERS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'};
-    private Model gameState;
-
+    private static final Font MATRICIAL_FONT = new Font("Cascadia Mono", Font.PLAIN, 12);
+    private static final int FRAME_WIDTH = 750;
+    private static final int FRAME_HEIGHT = 806;
+    private static final char[] DIRECTION_CHARACTERS = {'^', '>', 'v', '<'};
     private static final InputStream FONT_FILE_PATH = GameWindow.class.getResourceAsStream("/CascadiaMono.ttf");
-
     private static final float FONT_SIZE = 12f;
+    private final JTextArea screen = new JTextArea("");
+    private IController controller;
+    private Model gameState;
 
 
     /**
@@ -85,6 +83,18 @@ class GameWindow extends JFrame {
         this.setVisible(true);
     }
 
+    private static Font makeFont() {
+        Font font;
+        try {
+            assert GameWindow.FONT_FILE_PATH != null;
+            font = Font.createFont(Font.TRUETYPE_FONT, GameWindow.FONT_FILE_PATH);
+        } catch (final FontFormatException | IOException exception) {
+            throw new RuntimeException(exception);
+        }
+        font = font.deriveFont(GameWindow.FONT_SIZE);
+        return font;
+    }
+
     private void keyReleased(final KeyEvent keyEvent) {
         // The code to manage the key released event
     }
@@ -129,8 +139,7 @@ class GameWindow extends JFrame {
         this.screen.setText(screen);
     }
 
-
-    public void drawGameState(IModel model) {
+    public String drawGameState(IModel model) {
         StringBuilder sb = new StringBuilder();
 
         for (int y = 0; y < Constants.GAME_HEIGHT; y++) {
@@ -142,8 +151,8 @@ class GameWindow extends JFrame {
                 } else if (model.getAiSnake().contains(point)) {
                     sb.append(AI_SNAKE_CELL);
                 } else if (model.getApples().size() != 0 && model.positionApples(point)) {
-                        int value = model.getAppleAtPos(point).getValue();
-                        sb.append(value > 0 ? APPLE_CHARACTERS[value - 1] : POISON_APPLE_CHARACTERS[-value - 1]);
+                    int value = model.getAppleAtPos(point).getValue();
+                    sb.append(value > 0 ? APPLE_CHARACTERS[value - 1] : POISON_APPLE_CHARACTERS[-value - 1]);
                 } else {
                     sb.append(EMPTY_CELL);
                 }
@@ -152,18 +161,6 @@ class GameWindow extends JFrame {
             sb.append('\n');
         }
         screen.setText(sb.toString());
-    }
-
-
-    private static Font makeFont() {
-        Font font;
-        try {
-            assert GameWindow.FONT_FILE_PATH != null;
-            font = Font.createFont(Font.TRUETYPE_FONT, GameWindow.FONT_FILE_PATH);
-        } catch (final FontFormatException | IOException exception) {
-            throw new RuntimeException(exception);
-        }
-        font = font.deriveFont(GameWindow.FONT_SIZE);
-        return font;
+        return sb.toString();
     }
 }

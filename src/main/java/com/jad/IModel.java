@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 public interface IModel {
     IModel getGameState();
+
     void changePlayerDirection(Direction direction);
+
     void setController(IController controller);
 
     Snake getAiSnake();
@@ -21,6 +23,12 @@ public interface IModel {
     Apple getAppleAtPos(Point point);
 
     void updateGame(int t);
+
+    void generatePath(String gameBoard);
+
+    void endGame();
+
+    boolean isWin();
 
     void resetGame();
 }

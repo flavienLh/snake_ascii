@@ -1,14 +1,10 @@
 package com.jad.view;
 
-import com.jad.Constants;
 import com.jad.IController;
 import com.jad.IModel;
 import com.jad.IView;
 
 import javax.swing.*;
-import java.awt.*;
-
-import static com.jad.view.GameWindow.*;
 
 public class View implements IView {
     private IModel model;
@@ -17,8 +13,8 @@ public class View implements IView {
     private GameWindow gameWindow;
 
     @Override
-    public void display() {
-        this.gameWindow.drawGameState(model);
+    public String display() {
+        return this.gameWindow.drawGameState(model);
     }
 
     @Override

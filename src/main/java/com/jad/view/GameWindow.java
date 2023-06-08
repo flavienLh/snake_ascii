@@ -82,18 +82,28 @@ class GameWindow extends JFrame {
 
     private void keyPressed(final KeyEvent keyEvent) {
         switch (keyEvent.getKeyChar()) {
-            case 'q':
-                controller.changePlayerDirection(Direction.LEFT);
-                break;
-            case 'd':
-                controller.changePlayerDirection(Direction.RIGHT);
-                break;
-            case 'z':
-                controller.changePlayerDirection(Direction.UP);
-                break;
-            case 's':
-                controller.changePlayerDirection(Direction.DOWN);
-                break;
+            case 'q' -> {
+                switch (controller.getCurrentDirection()) {
+                    case UP -> controller.changePlayerDirection(Direction.LEFT);
+                    case DOWN -> controller.changePlayerDirection(Direction.RIGHT);
+                    case LEFT -> controller.changePlayerDirection(Direction.DOWN);
+                    case RIGHT -> controller.changePlayerDirection(Direction.UP);
+                }
+            }
+            case 'd' -> {
+                switch (controller.getCurrentDirection()) {
+                    case UP -> controller.changePlayerDirection(Direction.RIGHT);
+                    case DOWN -> controller.changePlayerDirection(Direction.LEFT);
+                    case LEFT -> controller.changePlayerDirection(Direction.UP);
+                    case RIGHT -> controller.changePlayerDirection(Direction.DOWN);
+                }
+            }
+        }
+        switch (keyEvent.getKeyCode()) {
+            case KeyEvent.VK_UP -> controller.changePlayerDirection(Direction.UP);
+            case KeyEvent.VK_DOWN -> controller.changePlayerDirection(Direction.DOWN);
+            case KeyEvent.VK_LEFT -> controller.changePlayerDirection(Direction.LEFT);
+            case KeyEvent.VK_RIGHT -> controller.changePlayerDirection(Direction.RIGHT);
         }
     }
 

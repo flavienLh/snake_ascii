@@ -2,7 +2,11 @@ package com.jad;
 
 import java.awt.*;
 import java.util.ArrayDeque;
+import java.util.Collections;
 import java.util.Deque;
+import java.util.List;
+
+
 
 public class Snake {
 
@@ -36,6 +40,26 @@ public class Snake {
         } else {
             return null;
         }
+    }
+
+    public boolean selfHit(){
+        int c = 0;
+        for (Point point : this.getBody()) {
+            if (c != 0 && this.getHead().equals(point)) {
+                return true;
+            }
+            c++;
+        }
+        return false;
+    }
+
+    public boolean hitOtherSnake(Snake otherSnake) {
+        for (Point point : otherSnake.getBody()) {
+            if (this.getHead().equals(point)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void move(Point newHeadPosition) {
@@ -88,6 +112,10 @@ public class Snake {
         }
 
         this.direction = newDirection;
+    }
+
+    public Deque<Point> getBody() {
+        return body;
     }
 
 

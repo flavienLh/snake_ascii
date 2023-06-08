@@ -11,13 +11,16 @@ public class Model implements IModel {
     private static Snake playerSnake;
     private static Snake aiSnake;
     private static ArrayList<Apple> apples = new ArrayList<Apple>();
-    private IController controller;
+    private static IController controller;
 
     public static void addNewApples() {
         for (int i = 0; i < random.nextInt(3) + 1; i++) {
             apples.add(new Apple(new Point(random.nextInt(Constants.GAME_WIDTH), random.nextInt(Constants.GAME_HEIGHT)), random.nextInt(9) + 1));
             System.out.println(apples.get(apples.size() - 1).getValue());
         }
+    }
+    public void gameOver() {
+        controller.gameOver();
     }
 
     public static void tick(int t) {
@@ -40,6 +43,12 @@ public class Model implements IModel {
                 }
                 apples.remove(i);
             }
+        }
+        if (playerSnake.selfHit()){
+            controller.gameOver();
+        }
+        if (playerSnake.hitOtherSnake(aiSnake) || aiSnake.hitOtherSnake(playerSnake)){
+            controller.gameOver();
         }
         if (t == 50) {
             addNewApples();
@@ -127,6 +136,15 @@ public class Model implements IModel {
         }
         return apples.get(i - 1);
     }
+    public void resetGame() {
+        apples.clear();
+
+        playerSnake = new Snake(new Point(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2), 3, Direction.RIGHT);
+        aiSnake = new Snake(new Point(Constants.GAME_WIDTH / 2 + 10, Constants.GAME_HEIGHT / 2), 3, Direction.LEFT);
+
+        addNewApples();
+    }
+
 
 
 }

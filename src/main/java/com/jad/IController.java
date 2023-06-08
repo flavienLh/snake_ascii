@@ -6,4 +6,8 @@ public interface IController {
     void start();
     Direction getCurrentDirection();
     void runGame();
+
+    void restartGame();
+
+    void gameOver();
 }

@@ -8,6 +8,8 @@ import com.jad.model.Model;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
@@ -56,6 +58,13 @@ class GameWindow extends JFrame {
         this.controller = controller;
         this.gameState = gameState;
 
+        JButton replayButton = new JButton("Replay");
+        replayButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                controller.restartGame();
+            }
+        });
+        this.add(replayButton, BorderLayout.SOUTH);
         this.screen.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(final KeyEvent keyEvent) {
@@ -144,6 +153,7 @@ class GameWindow extends JFrame {
         }
         screen.setText(sb.toString());
     }
+
 
     private static Font makeFont() {
         Font font;

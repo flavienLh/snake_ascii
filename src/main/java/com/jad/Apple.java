@@ -9,16 +9,14 @@ import static java.lang.Math.random;
 
 public class Apple {
     private final Point position;
-    private final int value;
-    private final boolean isPoisonous;
+    private int value;
 
     public Apple(Point position, int value) {
         this.position = position;
         this.value = value;
-        if (new Random().nextInt(100) >= 75)
-            isPoisonous = false;
-        else
-            isPoisonous = true;
+        if (new Random().nextInt(100) >= 75) {
+            this.value *= -1;
+        }
     }
 
 
@@ -32,7 +30,7 @@ public class Apple {
     }
 
     public boolean isPoisonous() {
-        return isPoisonous;
+        return value > 0 ? false : true;
     }
 }
 

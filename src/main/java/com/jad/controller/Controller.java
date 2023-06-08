@@ -64,7 +64,9 @@ public class Controller extends Component implements IController {
                 e.printStackTrace();
             }
             t = (t + 1) % 51;
+            this.isEndOfTheGame();
         }
+        this.gameOver();
     }
 
     @Override
@@ -72,10 +74,9 @@ public class Controller extends Component implements IController {
 
     }
 
+
     public void isEndOfTheGame() {
-        if (model.isWin()) {
-            gameRunning = !gameRunning;
-        }
+        gameRunning = !(model.isWin() || model.isLost());
     }
 
     public void gameOver() {

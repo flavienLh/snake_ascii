@@ -46,7 +46,7 @@ public class Snake {
     public boolean selfHit() {
         int c = 0;
         for (Point point : this.getBody()) {
-            if (c != 0 && this.getHead().equals(point)) {
+            if (c != 0 && this.getLength() > 0 && this.getHead().equals(point)) {
                 return true;
             }
             c++;
@@ -56,7 +56,7 @@ public class Snake {
 
     public boolean hitOtherSnake(Snake otherSnake) {
         for (Point point : otherSnake.getBody()) {
-            if (this.getHead().equals(point)) {
+            if (this.getLength() > 0 && this.getHead().equals(point)) {
                 return true;
             }
         }

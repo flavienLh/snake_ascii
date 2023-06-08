@@ -25,7 +25,7 @@ public class Model implements IModel {
 
     public static void tick(int t) {
         for (int i = 0; i < apples.size(); i++) {
-            if (playerSnake.getHead().equals(apples.get(i).getPosition())) {
+            if (playerSnake.getLength() > 0 && playerSnake.getHead().equals(apples.get(i).getPosition())) {
                 if (!apples.get(i).isPoisonous()) {
                     playerSnake.grow(apples.get(i).getValue());
                 } else {
@@ -35,7 +35,7 @@ public class Model implements IModel {
             }
         }
         for (int i = 0; i < apples.size(); i++) {
-            if (aiSnake.getHead().equals(apples.get(i).getPosition())) {
+            if (aiSnake.getLength() > 0 && aiSnake.getHead().equals(apples.get(i).getPosition())) {
                 if (!apples.get(i).isPoisonous()) {
                     aiSnake.grow(apples.get(i).getValue());
                 } else {
@@ -243,6 +243,13 @@ public class Model implements IModel {
 
     public boolean isWin() {
         return win;
+    }
+
+    public boolean isLost() {
+        if (playerSnake.getLength() <= 0 || aiSnake.getLength() >= 100) {
+            return true;
+        }
+        return false;
     }
 
 

@@ -31,4 +31,6 @@ public interface IModel {
     boolean isWin();
 
     void resetGame();
+
+    boolean isLost();
 }

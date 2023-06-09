@@ -4,7 +4,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public interface IModel {
-    IModel getGameState();
 
     void changePlayerDirection(Direction direction);
 
@@ -23,10 +22,6 @@ public interface IModel {
     Apple getAppleAtPos(Point point);
 
     void updateGame(int t);
-
-    void generatePath(String gameBoard);
-
-    void endGame();
 
     boolean isWin();
 

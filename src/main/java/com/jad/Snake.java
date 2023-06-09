@@ -114,19 +114,6 @@ public class Snake {
         this.direction = newDirection;
     }
 
-    public void setAiPath(ArrayList<Integer> aiPath) {
-        this.aiPath = aiPath;
-    }
-
-    public int getNextInstruction() {
-        int nextInstruction = 0;
-        if (this.aiPath.size() > 0) {
-            nextInstruction = this.aiPath.get(0);
-            this.aiPath.remove(0);
-        }
-        return nextInstruction;
-    }
-
     public void updateSnakePosition() {
         Direction currentDirection = this.getDirection();
         Point newHeadPosition = new Point(this.getHeadPosition());

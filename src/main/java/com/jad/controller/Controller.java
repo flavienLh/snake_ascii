@@ -76,11 +76,6 @@ public class Controller extends Component implements IController {
 
     }
 
-
-    public void isEndOfTheGame() {
-        gameRunning = !(model.isWin() || model.isLost());
-    }
-
     public void gameOver() {
         Object[] options = {"Recommencer", "Quitter"};
         int choice = JOptionPane.showOptionDialog(this,

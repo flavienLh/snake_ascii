@@ -1,6 +1,6 @@
 package com.jad.view;
 
-import com.jad.Constants;
+import com.jad.GameboardUtils;
 import com.jad.Direction;
 import com.jad.IController;
 import com.jad.IModel;
@@ -142,8 +142,8 @@ class GameWindow extends JFrame {
     public String drawGameState(IModel model) {
         StringBuilder sb = new StringBuilder();
 
-        for (int y = 0; y < Constants.GAME_HEIGHT; y++) {
-            for (int x = 0; x < Constants.GAME_WIDTH; x++) {
+        for (int y = 0; y < GameboardUtils.GAME_HEIGHT; y++) {
+            for (int x = 0; x < GameboardUtils.GAME_WIDTH; x++) {
                 Point point = new Point(x, y);
 
                 if (model.getPlayerSnake().contains(point)) {

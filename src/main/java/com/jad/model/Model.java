@@ -16,7 +16,7 @@ public class Model implements IModel {
 
     public static void addNewApples() {
         for (int i = 0; i < random.nextInt(6) + 1; i++) {
-            apples.add(new Apple(new Point(random.nextInt(Constants.GAME_WIDTH), random.nextInt(Constants.GAME_HEIGHT)), random.nextInt(9) + 1));
+            apples.add(new Apple(new Point(random.nextInt(GameboardUtils.GAME_WIDTH), random.nextInt(GameboardUtils.GAME_HEIGHT)), random.nextInt(9) + 1));
         }
     }
 
@@ -24,7 +24,7 @@ public class Model implements IModel {
         if (playerSnake.selfHit() || playerSnake.hitOtherSnake(aiSnake) || playerSnake.getLength() <= 0 || aiSnake.getLength() >= 100) {
             controller.gameOver();
         }
-        if (playerSnake.getLength() >= 100 || aiSnake.hitOtherSnake(playerSnake) || aiSnake.getLength() <= 0 || aiSnake.selfHit()) {
+        if (playerSnake.getLength() >= 100 || aiSnake.getLength() <= 0) {
             controller.gameWin();
         }
         for (int i = 0; i < apples.size(); i++) {
@@ -231,8 +231,8 @@ public class Model implements IModel {
     }
 
     public void start() {
-        playerSnake = new Snake(new Point(Constants.GAME_WIDTH / 2 - 10, Constants.GAME_HEIGHT / 2), 3, Direction.DOWN);
-        aiSnake = new Snake(new Point(Constants.GAME_WIDTH / 2 + 10, Constants.GAME_HEIGHT / 2), 3, Direction.UP);
+        playerSnake = new Snake(new Point(GameboardUtils.GAME_WIDTH / 2 - 10, GameboardUtils.GAME_HEIGHT / 2), 3, Direction.DOWN);
+        aiSnake = new Snake(new Point(GameboardUtils.GAME_WIDTH / 2 + 10, GameboardUtils.GAME_HEIGHT / 2), 3, Direction.UP);
         this.addNewApples();
     }
 
@@ -307,8 +307,8 @@ public class Model implements IModel {
     public void resetGame() {
         apples.clear();
 
-        playerSnake = new Snake(new Point(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2), 3, Direction.RIGHT);
-        aiSnake = new Snake(new Point(Constants.GAME_WIDTH / 2 + 10, Constants.GAME_HEIGHT / 2), 3, Direction.LEFT);
+        playerSnake = new Snake(new Point(GameboardUtils.GAME_WIDTH / 2, GameboardUtils.GAME_HEIGHT / 2), 3, Direction.RIGHT);
+        aiSnake = new Snake(new Point(GameboardUtils.GAME_WIDTH / 2 + 10, GameboardUtils.GAME_HEIGHT / 2), 3, Direction.LEFT);
 
         addNewApples();
     }

@@ -69,16 +69,16 @@ public class Snake {
 
         switch (this.direction) {
             case UP:
-                newHead = new Point(head.x, (head.y - 1 + Constants.GAME_HEIGHT) % Constants.GAME_HEIGHT);
+                newHead = new Point(head.x, (head.y - 1 + GameboardUtils.GAME_HEIGHT) % GameboardUtils.GAME_HEIGHT);
                 break;
             case DOWN:
-                newHead = new Point(head.x, (head.y + 1) % Constants.GAME_HEIGHT);
+                newHead = new Point(head.x, (head.y + 1) % GameboardUtils.GAME_HEIGHT);
                 break;
             case LEFT:
-                newHead = new Point((head.x - 1 + Constants.GAME_WIDTH) % Constants.GAME_WIDTH, head.y);
+                newHead = new Point((head.x - 1 + GameboardUtils.GAME_WIDTH) % GameboardUtils.GAME_WIDTH, head.y);
                 break;
             case RIGHT:
-                newHead = new Point((head.x + 1) % Constants.GAME_WIDTH, head.y);
+                newHead = new Point((head.x + 1) % GameboardUtils.GAME_WIDTH, head.y);
                 break;
         }
         this.body.addFirst(newHead);

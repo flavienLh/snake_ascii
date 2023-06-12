@@ -1,11 +1,7 @@
 package com.jad;
 
-import com.jad.Constants;
-
 import java.awt.*;
 import java.util.Random;
-
-import static java.lang.Math.random;
 
 public class Apple {
     private final Point position;

@@ -10,9 +10,6 @@ public class Apple {
     public Apple(Point position, int value) {
         this.position = position;
         this.value = value;
-        if (new Random().nextInt(100) >= 75) {
-            this.value *= -1;
-        }
     }
 
 
@@ -25,8 +22,13 @@ public class Apple {
         return this.value;
     }
 
+    //public boolean isPoisonous() {
+    //    return value > 0 ? false : true;
+    //}
+
     public boolean isPoisonous() {
-        return value > 0 ? false : true;
+        return false;
     }
 }
+
 

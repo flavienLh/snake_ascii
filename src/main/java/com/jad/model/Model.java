@@ -16,7 +16,11 @@ public class Model implements IModel {
 
     public static void addNewApples() {
         for (int i = 0; i < random.nextInt(6) + 1; i++) {
-            apples.add(new Apple(new Point(random.nextInt(GameboardUtils.GAME_WIDTH), random.nextInt(GameboardUtils.GAME_HEIGHT)), random.nextInt(9) + 1));
+            Point position = new Point(random.nextInt(GameboardUtils.GAME_WIDTH), random.nextInt(GameboardUtils.GAME_HEIGHT));
+            int value = random.nextInt(9) + 1;
+
+            Apple newApple = AppleFactory.createApple(position, value);
+            apples.add(newApple);
         }
     }
 

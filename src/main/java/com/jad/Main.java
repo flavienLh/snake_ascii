@@ -8,8 +8,10 @@ public enum Main {
     ;
 
     public static void main(final String[] args) {
-        final IController controller;
-        controller = new Controller(new View(), new Model());
+        final IView view = new View();
+        final IModel model = new Model();
+        final IController controller = new Controller(view, model);
+
         controller.start();
         controller.runGame();
     }
